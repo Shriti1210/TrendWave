@@ -1,6 +1,6 @@
 import React from 'react'
 import {Routes, Route, useLocation,Navigate} from 'react-router-dom'
-import Registration from './pages/registration.jsx'
+import Registration from './pages/Registration.jsx'
 import Home from './pages/Home'     
 import Login from './pages/Login'
 import Navbar from './components/Navbar.jsx'
