@@ -1,5 +1,5 @@
 import React, {useContext, useState} from 'react'
-import Logo from '../E-commerce MERN Assets/TrendWavelogo.png'
+import Logo from '../E-commerce MERN Assets/Trendwavelogo.png'
 import { FaRegEye } from "react-icons/fa6";
 import { FaEye } from "react-icons/fa6";
 import {useNavigate} from 'react-router-dom';
