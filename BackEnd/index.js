@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use(cors({
-  origin:["https://trendwave-frontend.onrender.com","http://localhost:5174"],
+  origin:["https://trendwave-frontend.onrender.com","https://trendwave-admin.onrender.com"],
   credentials:true
 }))
 
