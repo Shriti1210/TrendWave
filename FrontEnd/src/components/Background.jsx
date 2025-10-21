@@ -1,9 +1,9 @@
 import React from 'react'
-import back1 from "../E-commerce MERN Assets/back1.png"
-import back2 from "../E-commerce MERN Assets/back2.png"
-import back3 from "../E-commerce MERN Assets/back3.png"
-import back4 from "../E-commerce MERN Assets/back4.png"
-import back5 from "../E-commerce MERN Assets/back5.png"
+import back1 from "../E-commerce MERN Assets/Back1.png"
+import back2 from "../E-commerce MERN Assets/Back2.png"
+import back3 from "../E-commerce MERN Assets/Back3.png"
+import back4 from "../E-commerce MERN Assets/Back4.png"
+import back5 from "../E-commerce MERN Assets/Back5.png"
 
 function Background({heroCount}) {
   
