@@ -12,7 +12,6 @@ import { signInWithRedirect, getRedirectResult, fetchSignInMethodsForEmail,
   linkWithCredential ,EmailAuthProvider} from "firebase/auth";
 import {auth, googleProvider, microsoftProvider } from "../../utils/firebase";
 import { userDataContext } from "../context/userContext";
-import { signInWithRedirect, getRedirectResult } from "firebase/auth";
 import { useEffect } from "react";
 
 
