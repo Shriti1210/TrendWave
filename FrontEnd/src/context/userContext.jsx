@@ -19,7 +19,6 @@ function UserContext({children}) {
         console.log(result.data) 
     } catch (error) {
         setUserData(null);
-        console.log(error);
     }
     
   }
