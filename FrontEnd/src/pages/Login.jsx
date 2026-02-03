@@ -8,19 +8,49 @@ import { FaEye } from "react-icons/fa6";
 import { useContext } from "react";
 import { authDataContext } from "../context/AuthContext";
 import axios from "axios"; 
-import { signInWithPopup, fetchSignInMethodsForEmail, 
+import { signInWithRedirect, getRedirectResult, fetchSignInMethodsForEmail, 
   linkWithCredential ,EmailAuthProvider} from "firebase/auth";
 import {auth, googleProvider, microsoftProvider } from "../../utils/firebase";
 import { userDataContext } from "../context/userContext";
+import { signInWithRedirect, getRedirectResult } from "firebase/auth";
+import { useEffect } from "react";
 
 
 function Login() {
-  let navigate=useNavigate();
+    let navigate=useNavigate();
     let [showPass,setShowPass]=useState(false);
     let [email,setEmail]=useState("");
     let [password,setPassword]=useState("");
     let {serverUrl}=useContext(authDataContext);
-    let {getCurrentUser}=useContext(userDataContext)
+    let {getCurrentUser}=useContext(userDataContext);
+
+    useEffect(() => {
+  const handleRedirect = async () => {
+    try {
+      const result = await getRedirectResult(auth);
+
+      if (result) {
+        const user = result.user;
+        const username = user.displayName;
+        const email = user.email;
+
+        await axios.post(
+          serverUrl + "/api/auth/googlelogin",
+          { username, email },
+          { withCredentials: true }
+        );
+
+        getCurrentUser();
+        navigate("/");
+      }
+    } catch (error) {
+      console.error("Redirect login error:", error);
+    }
+  };
+
+  handleRedirect();
+}, [navigate, serverUrl]);
+
 
     const handleLogin=async(e)=>{
         e.preventDefault();
@@ -37,7 +67,7 @@ function Login() {
     //google login
         const googleLogin=async()=>{
             try {
-                const response=await signInWithPopup(auth,googleProvider) ;
+                const response=await signInWithRedirect(auth, microsoftProvider);;
                 let user=response.user;
                 let username=user.displayName;
                 let email=user.email;
@@ -56,7 +86,7 @@ function Login() {
         // Microsoft Login
         const microsoftLogin = async () => {
               try {
-                  const response = await signInWithPopup(auth, microsoftProvider);
+                  const response = await signInWithRedirect(auth, microsoftProvider);;
                   console.log(response.user);
                   let user = response.user;
                   let username = user.displayName;
@@ -81,7 +111,7 @@ function Login() {
     
                       if (methods.includes("google.com")) {
                          // User must sign in with Google first
-                         const googleResult = await signInWithPopup(auth, googleProvider);
+                         const googleResult = await signInWithRedirect(auth, googleProvider);
     
                          // Link Microsoft credentials to that Google user
                          await linkWithCredential(googleResult.user, pendingCred);
