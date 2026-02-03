@@ -66,7 +66,7 @@ function Login() {
     //google login
         const googleLogin=async()=>{
             try {
-                const response=await signInWithRedirect(auth, microsoftProvider);;
+                const response=await signInWithRedirect(auth, googleProvider);;
                 let user=response.user;
                 let username=user.displayName;
                 let email=user.email;
